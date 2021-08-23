@@ -6,6 +6,13 @@ import './main.scss'
 import TodoList from './TodoList'
 
 function App() {
+
+  window.addEventListener("resize", function() {
+    console.log(innerWidth);
+    console.log(innerHeight);
+  }, false);
+
+
   /**
    * @type {React.MutableRefObject<HTMLInputElement>}
    */
