@@ -1,5 +1,6 @@
 export default function TodoList({ items, onChange }) {
-  return items.map(({ key, title, archived }, index) => <div className="todo-row" key={ key }>
+  return items.map(({ key, title, archived }, index) =>
+    <div className="todo-row" key={ key }>
     <span className="todo-title">{ title }</span>
     <input
       className="todo-checked"

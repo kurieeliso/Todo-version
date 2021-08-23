@@ -34,7 +34,6 @@ function App() {
       archived: false,
     }))
   }, [inputValue])
-
   return <div className="app">
     <form onSubmit={ handleSubmit }>
       <input
@@ -52,14 +51,12 @@ function App() {
         value={ 'Добавить' }
       />
     </form>
-
-    <div className="main-todo">
-      <TodoList
-        items={ todos }
-        onChange={ (item, index) => setTodos(update(index, item)) }
-      />
-    </div>
-
+        <div className="main-todo">
+          <TodoList
+            items={ todos }
+            onChange={ (item, index) => setTodos(update(index, item)) }
+          />
+        </div>
     <footer>
       <button className="todo-button" onClick={ () => {
         setTodos(filter(({ archived }) => !archived))
