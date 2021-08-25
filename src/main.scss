@@ -15,42 +15,26 @@
     background-position: 0 50%;
   }
 }
+.todo-row{
+  transition: all 0.4s ease-out;
+  opacity: 1;
+}
+
 .todo-row {
   animation: animate 1s ease;
 }
-.completed {
-  animation: com 1s ease;
-}
-@keyframes com {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes animate {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 body {
   font-weight: 400;
   font-family: sans-serif;
   padding: 0;
   margin: 0;
 }
-
+.todo-exit-active {
+  animation: fade-in 500ms forwards;
+}
+.todo-enter-active {
+  animation: fade-in 500ms forwards;
+}
 .app {
   display: flex;
   flex-direction: column;
@@ -185,6 +169,7 @@ footer {
 .edit-icon {
   color: #fff;
 }
+
 .todo-exit-active {
   animation: fade-in 500ms forwards;
 }
@@ -226,7 +211,6 @@ footer {
       background-position: 0 50%;
     }
   }
-
 }
 
 @media screen and (max-height: 800px) {
@@ -248,7 +232,6 @@ footer {
   .todo-row {
     width: 95%;
   }
-
 }
 
 @media screen and (max-width: 990px) {
@@ -278,11 +261,17 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
-
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

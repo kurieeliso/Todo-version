@@ -1,21 +1,12 @@
 import { useState, useCallback, useRef } from 'react'
-import { append, update, filter } from 'ramda'
+import { update, filter, prepend } from 'ramda'
 import { v4 as uuid } from 'uuid'
 import './main.scss'
 
 import TodoList from './TodoList'
 
 function App() {
-
-  window.addEventListener("resize", function() {
-    console.log(innerWidth);
-    console.log(innerHeight);
-  }, false);
-
-
-  /**
-   * @type {React.MutableRefObject<HTMLInputElement>}
-   */
+  /** @type {React.MutableRefObject<HTMLInputElement>} */
   const inputRef = useRef()
 
   const [inputValue, setInputValue] = useState('')
@@ -28,12 +19,13 @@ function App() {
     setInputValue('')
     inputRef.current.focus()
 
-    setTodos(append({
+    setTodos(prepend({
       key: uuid(),
       title: inputValue,
       archived: false,
     }))
   }, [inputValue])
+
   return <div className="app">
     <form onSubmit={ handleSubmit }>
       <input
@@ -51,23 +43,22 @@ function App() {
         value={ 'Добавить' }
       />
     </form>
-        <div className="main-todo">
-          <TodoList
-            items={ todos }
-            onChange={ (item, index) => setTodos(update(index, item)) }
-          />
-        </div>
-    <footer>
-      <button className="todo-button" onClick={ () => {
-        setTodos(filter(({ archived }) => !archived))
-      } }><i className="bx bxs-minus-square"/></button>
-    </footer>
 
-    <div className="d-flex flex-column justify-content-center w-100 h-100">
-      <div className="d-flex flex-column justify-content-center align-items-center">
-
-      </div>
+    <div className="main-todo">
+      <TodoList
+        items={ todos }
+        onChange={ (item, index) => setTodos(update(index, item)) }
+      />
     </div>
+
+    <footer>
+      <button
+        className="todo-button"
+        onClick={ () => setTodos(filter(({ archived }) => !archived)) }
+      >
+        <i className="bx bxs-minus-square"/>
+      </button>
+    </footer>
   </div>
 }
 
